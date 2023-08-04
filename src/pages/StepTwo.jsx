@@ -9,7 +9,7 @@ const StepTwo = ({ onStepChange }) => {
     { id: "variant-1", text: "Это Жассур.aka" },
     { id: "variant-2", text: "Это синхофазотрон" },
     { id: "variant-3", text: "Это язык программирования" },
-    { id: "variant-4", text: "( . )( . )" },
+    { id: "variant-4", text: "????" },
   ];
 
   const handleVariantChange = (e) => {
