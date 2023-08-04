@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Indicator } from "../components/ui/Indicator";
 import AppButton from "../components/ui/AppButton";
 import QuestionVariant from "../components/ui/QuestionVariant";
+import { Heading } from "../typography/Heading";
+// import { AnswerOption } from "../components/AnswerOption";
+
 
 const StepTwo = ({ onStepChange }) => {
   const [selectedVariant, setSelectedVariant] = useState(null);
@@ -11,6 +14,28 @@ const StepTwo = ({ onStepChange }) => {
     { id: "variant-3", text: "Это язык программирования" },
     { id: "variant-4", text: "????" },
   ];
+
+  // ВАРИАНТ ГИЕСА
+  // const StepTwo = () => {
+  //   const options = [
+  //     {
+  //       id: Math.floor(Math.random() * 1000),
+  //       text: 'Ваш ответ 1'
+  //     },
+  //     {
+  //       id: Math.floor(Math.random() * 1000),
+  //       text: 'Ваш ответ 2'
+  //     },
+  //     {
+  //       id: Math.floor(Math.random() * 1000),
+  //       text: 'Ваш ответ 3'
+  //     },
+  //     {
+  //       id: Math.floor(Math.random() * 1000),
+  //       text: 'Ваш ответ 4'
+  //     },
+  //   ]
+  // }
 
   const handleVariantChange = (e) => {
     setSelectedVariant(e.target.id);
@@ -24,7 +49,7 @@ const StepTwo = ({ onStepChange }) => {
         <div className="variants-quiz">
           <Indicator />
           <div className="question">
-            <h2>ЧЕ ТАКОЕ JS ТВОЮ МЕДЬ</h2>
+            <Heading headingType="h2" text="ЧЕ ТАКОЕ JS ТВОЮ МЕДЬ"/>
             <ul className="variants">
               {variants.map((variant) => (
                 <QuestionVariant
@@ -36,6 +61,9 @@ const StepTwo = ({ onStepChange }) => {
                 />
               ))}
             </ul>
+             {/* options.map(element => (
+              <AnswerOption key={elemet.id} id={element.id} labelText={element.text} />
+            ))  */}
             <AppButton
               isDisabled={isButtonDisabled}
               buttonLabel="Далее"

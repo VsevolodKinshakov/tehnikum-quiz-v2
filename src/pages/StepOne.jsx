@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Indicator } from "../components/ui/Indicator";
 import AppButton from "../components/ui/AppButton";
 import { AppInput } from "../components/ui/AppInput";
+import { Heading } from "../typography/Heading";
 
 const StepOne = ({ onStepChange }) => {
   const [answer, setAnswer] = useState("");
@@ -18,7 +19,7 @@ const StepOne = ({ onStepChange }) => {
         <div className="single-input-quiz">
           <Indicator />
           <div className="question">
-            <h2>КАК ОНО РАБОТАЕТ?</h2>
+            <Heading headingtype="h2" text="КАК ОНО РАБОТАЕТ?"/>
             <AppInput
               required
               type="text"

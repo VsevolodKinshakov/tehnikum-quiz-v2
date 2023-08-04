@@ -21,7 +21,7 @@ const Welcome = ({ onStepChange }) => {
     <div className="container">
       <div className="wrapper">
         <div className="welcome">
-          <Heading text="Добро пожаловать в квиз от лучшего учебного центра" />
+          <Heading headingType="h1" text="Добро пожаловать в квиз от лучшего учебного центра" />
           <div className="welcome__form">
             <AppInput
               required={true}
