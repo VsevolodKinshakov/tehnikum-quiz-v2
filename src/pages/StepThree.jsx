@@ -1,62 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import Indicator from "../components/ui/Indicator";
+import AppButton from "../components/ui/AppButton";
+import { Heading } from "../typography/Heading";
 
-const StepThree = () => {
+const StepThree = ({ onStepChange }) => {
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const variants = [
+    { id: "variant-1", text: "Ваш ответ 1", imgSrc: "./img/laugh.png" },
+    { id: "variant-2", text: "Ваш ответ 2", imgSrc: "./img/hearts.png" },
+    { id: "variant-3", text: "Ваш ответ 3", imgSrc: "./img/smirk.png" },
+    { id: "variant-4", text: "Ваш ответ 4", imgSrc: "./img/fright.png" },
+  ];
+
+  const handleVariantChange = (e) => {
+    setSelectedVariant(e.target.id);
+  };
+
+  const isButtonDisabled = !selectedVariant;
+
   return (
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description"
-                >Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2 _active"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+          <Indicator />
           <div className="question">
-            <h2>3. Занимательный вопрос</h2>
+            <Heading headingType="h2" text="Супер интересный вопрос" />
             <ul className="emoji-variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-1" />
-                <label htmlFor="variant-1">
-                  <img src="./img/laugh.png" alt="laugh" />
-                  <p>Ваш ответ 1</p>
-                </label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-2" />
-                <label htmlFor="variant-2">
-                  <img src="./img/hearts.png" alt="hearts" />
-                  <p>Ваш ответ 2</p>
-                </label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-3" />
-                <label htmlFor="variant-3">
-                  <img src="./img/smirk.png" alt="smirk" />
-                  <p>Ваш ответ 3</p>
-                </label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-4" />
-                <label htmlFor="variant-4">
-                  <img src="./img/fright.png" alt="fright" />
-                  <p>Ваш ответ 4</p>
-                </label>
-              </li>
+              {variants.map((variant) => (
+                <li className="variant-wrapper" key={variant.id}>
+                  <input
+                    required
+                    type="radio"
+                    name="variant"
+                    id={variant.id}
+                    checked={selectedVariant === variant.id}
+                    onChange={handleVariantChange}
+                  />
+                  <label htmlFor={variant.id}>
+                    <img src={variant.imgSrc} alt={variant.text} />
+                    <p>{variant.text}</p>
+                  </label>
+                </li>
+              ))}
             </ul>
-            <button disabled id="next-btn">Далее</button>
+            <AppButton
+              isDisabled={isButtonDisabled}
+              id="next-btn"
+              buttonLabel="Далее"
+              onClick={() => onStepChange(4)}
+            />
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default StepThree;

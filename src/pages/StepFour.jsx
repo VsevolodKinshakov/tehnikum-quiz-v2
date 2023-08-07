@@ -1,49 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import Indicator from "../components/ui/Indicator";
+import { Heading } from "../typography/Heading";
+import AppButton from "../components/ui/AppButton";
+import QuestionVariant from "../components/ui/QuestionVariant";
 
-const StepFour = () => {
+const StepFour = ({ onStepChange }) => {
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const variants = [
+    { id: "variant-1", text: "Это Жассур.aka" },
+    { id: "variant-2", text: "Это синхофазотрон" },
+    { id: "variant-3", text: "Это язык программирования" },
+    { id: "variant-4", text: "????" },
+    { id: "variant-5", text: "Шо за шлпяпа" },
+    { id: "variant-5", text: "Смотри-ка работает 6 вариант" },
+
+  ];
+
+  const handleVariantChange = (e) => {
+    setSelectedVariant(e.target.id);
+  };
+
+  const isButtonDisabled = !selectedVariant;
   return (
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description"
-                >Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2 _active"></div>
-              <div className="indicator__unit indicator__unit-3 _active"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+          <Indicator />
           <div className="question">
-            <h2>4. Занимательный вопрос</h2>
-            <ul className="level-variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-1" />
-                <label htmlFor="variant-1">1</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-2" />
-                <label htmlFor="variant-2">2</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-3" />
-                <label htmlFor="variant-3">3</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-4" />
-                <label htmlFor="variant-4">4</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-5" />
-                <label htmlFor="variant-5">5</label>
-              </li>
+            <Heading headingType="h2" text="Ты почти подписал ИПОТЕКУ"/>
+            <ul className="variants">
+              {variants.map((variant) => (
+                <QuestionVariant
+                  key={variant.id}
+                  variantId={variant.id}
+                  labelText={variant.text}
+                  onChange={handleVariantChange}
+                  checked={selectedVariant === variant.id}
+                />
+              ))}
             </ul>
-            <button id="next-btn" disabled>Далее</button>
+            <AppButton
+              isDisabled={isButtonDisabled}
+              id="next-btn"
+              buttonLabel="Далее"
+              onClick={() => onStepChange(5)}
+            />
           </div>
         </div>
       </div>

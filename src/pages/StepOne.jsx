@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Indicator } from "../components/ui/Indicator";
+import Indicator from "../components/ui/Indicator";
 import AppButton from "../components/ui/AppButton";
 import { AppInput } from "../components/ui/AppInput";
 import { Heading } from "../typography/Heading";

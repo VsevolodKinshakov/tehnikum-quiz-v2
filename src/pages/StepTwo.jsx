@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Indicator } from "../components/ui/Indicator";
+import Indicator from "../components/ui/Indicator";
 import AppButton from "../components/ui/AppButton";
 import QuestionVariant from "../components/ui/QuestionVariant";
 import { Heading } from "../typography/Heading";
@@ -14,28 +14,6 @@ const StepTwo = ({ onStepChange }) => {
     { id: "variant-3", text: "Это язык программирования" },
     { id: "variant-4", text: "????" },
   ];
-
-  // ВАРИАНТ ГИЕСА
-  // const StepTwo = () => {
-  //   const options = [
-  //     {
-  //       id: Math.floor(Math.random() * 1000),
-  //       text: 'Ваш ответ 1'
-  //     },
-  //     {
-  //       id: Math.floor(Math.random() * 1000),
-  //       text: 'Ваш ответ 2'
-  //     },
-  //     {
-  //       id: Math.floor(Math.random() * 1000),
-  //       text: 'Ваш ответ 3'
-  //     },
-  //     {
-  //       id: Math.floor(Math.random() * 1000),
-  //       text: 'Ваш ответ 4'
-  //     },
-  //   ]
-  // }
 
   const handleVariantChange = (e) => {
     setSelectedVariant(e.target.id);
@@ -61,9 +39,6 @@ const StepTwo = ({ onStepChange }) => {
                 />
               ))}
             </ul>
-             {/* options.map(element => (
-              <AnswerOption key={elemet.id} id={element.id} labelText={element.text} />
-            ))  */}
             <AppButton
               isDisabled={isButtonDisabled}
               buttonLabel="Далее"

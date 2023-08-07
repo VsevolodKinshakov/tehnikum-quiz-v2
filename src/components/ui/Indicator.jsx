@@ -1,18 +1,24 @@
 import React from "react";
 
-export const Indicator = ( ) => {
-    return (
-        <div className="indicator">
-          <div className="indicator__text">
-            <span className="indicator__description">Скидка за прохождение опроса:</span>
-            <span className="indicator__value">15%</span>
-          </div>
-          <div className="indicator__progressbar">
-            <div className="indicator__unit indicator__unit-1"></div>
-            <div className="indicator__unit indicator__unit-2"></div>
-            <div className="indicator__unit indicator__unit-3"></div>
-            <div className="indicator__unit indicator__unit-4"></div>
-          </div>
-        </div>
-      );
-}
+const Indicator = ({ currentStep }) => {
+  const maxSteps = 4; // Общее количество этапов
+
+  return (
+    <div className="indicator">
+      <div className="indicator__text">
+        <span className="indicator__description">Скидка за прохождение опроса:</span>
+        <span className="indicator__value">15%</span>
+      </div>
+      <div className="indicator__progressbar">
+        {Array.from({ length: maxSteps }).map((_, index) => (
+          <div
+            key={index}
+            className={`indicator__unit ${currentStep >= index + 1 ? "_active" : ""}`}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Indicator;

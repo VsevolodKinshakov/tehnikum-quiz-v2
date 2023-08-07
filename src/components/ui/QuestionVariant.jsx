@@ -1,6 +1,6 @@
 import React from "react";
 
-const QuestionVariant = ({ variantId, labelText, checked }) => {
+const QuestionVariant = ({ variantId, labelText, checked, onChange }) => {
   return (
     <li className="variant-wrapper">
       <input required 
@@ -8,6 +8,7 @@ const QuestionVariant = ({ variantId, labelText, checked }) => {
       name="variant" 
       id={variantId} 
       checked={checked}
+      onChange={onChange}
       />
       <label htmlFor={variantId}>{labelText}</label>
     </li>
