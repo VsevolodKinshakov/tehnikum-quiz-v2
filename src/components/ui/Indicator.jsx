@@ -1,7 +1,11 @@
 import React from "react";
 
 const Indicator = ({ currentStep }) => {
-  const maxSteps = 4; // Общее количество этапов
+  const maxSteps = 4;
+
+  if (currentStep === 5) {
+    return null
+  }
 
   return (
     <div className="indicator">

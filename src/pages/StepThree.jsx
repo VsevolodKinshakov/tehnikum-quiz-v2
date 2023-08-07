@@ -6,10 +6,10 @@ import { Heading } from "../typography/Heading";
 const StepThree = ({ onStepChange }) => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const variants = [
-    { id: "variant-1", text: "Ваш ответ 1", imgSrc: "./img/laugh.png" },
-    { id: "variant-2", text: "Ваш ответ 2", imgSrc: "./img/hearts.png" },
-    { id: "variant-3", text: "Ваш ответ 3", imgSrc: "./img/smirk.png" },
-    { id: "variant-4", text: "Ваш ответ 4", imgSrc: "./img/fright.png" },
+    { id: "variant-1", text: "Улыбашечка", imgSrc: "./img/laugh.png" },
+    { id: "variant-2", text: "СЭРДЦЭ", imgSrc: "./img/hearts.png" },
+    { id: "variant-3", text: "Хитрая морда", imgSrc: "./img/smirk.png" },
+    { id: "variant-4", text: "Удивление", imgSrc: "./img/fright.png" },
   ];
 
   const handleVariantChange = (e) => {

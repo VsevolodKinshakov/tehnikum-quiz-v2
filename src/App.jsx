@@ -6,7 +6,7 @@ import StepTwo from './pages/StepTwo';
 import StepThree from './pages/StepThree';
 import StepFour from './pages/StepFour';
 import Thanks from './pages/Thanks';
-import Indicator from './components/ui/Indicator'; // Импортируем компонент Indicator
+import Indicator from './components/ui/Indicator';
 
 function App() {
   const [step, setStep] = useState(0);
@@ -23,7 +23,8 @@ function App() {
       {step === 2 && <StepTwo onStepChange={handleStepChange} />}
       {step === 3 && <StepThree onStepChange={handleStepChange} />}
       {step === 4 && <StepFour onStepChange={handleStepChange} />}
-      {step === 5 && <Thanks onStepChange={handleStepChange} />}
+      {step === 5 && <Thanks />}
+      {step !== 5 && <Indicator currentStep={step} />}
     </div>
   );
 }
