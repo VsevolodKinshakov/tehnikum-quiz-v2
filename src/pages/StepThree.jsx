@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Indicator from "../components/ui/Indicator";
-import AppButton from "../components/ui/AppButton";
+import { LinkButton } from "../components/ui/LinkButton";
 import { Heading } from "../typography/Heading";
 
-const StepThree = ({ onStepChange }) => {
+const StepThree = () => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const variants = [
     { id: "variant-1", text: "Улыбашечка", imgSrc: "./img/laugh.png" },
@@ -43,12 +43,11 @@ const StepThree = ({ onStepChange }) => {
                 </li>
               ))}
             </ul>
-            <AppButton
-              isDisabled={isButtonDisabled}
-              id="next-btn"
-              buttonLabel="Далее"
-              onClick={() => onStepChange(4)}
-            />
+            {
+              isButtonDisabled ?
+              (<LinkButton linkPath='step-four' isDisabled={isButtonDisabled} />) :
+              (<LinkButton linkPath="/step-four" />)
+            }
           </div>
         </div>
       </div>

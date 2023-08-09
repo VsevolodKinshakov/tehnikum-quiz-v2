@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Indicator from "../components/ui/Indicator";
 import { Heading } from "../typography/Heading";
-import AppButton from "../components/ui/AppButton";
+import { LinkButton } from "../components/ui/LinkButton";
 import QuestionVariant from "../components/ui/QuestionVariant";
 
-const StepFour = ({ onStepChange }) => {
+const StepFour = () => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const variants = [
     { id: "variant-1", text: "Это Жассур.aka" },
@@ -39,12 +39,11 @@ const StepFour = ({ onStepChange }) => {
                 />
               ))}
             </ul>
-            <AppButton
-              isDisabled={isButtonDisabled}
-              id="next-btn"
-              buttonLabel="Далее"
-              onClick={() => onStepChange(5)}
-            />
+            {
+              isButtonDisabled ?
+              (<LinkButton linkPath='step-five' isDisabled={isButtonDisabled} />) :
+              (<LinkButton linkPath="/step-five" />)
+            }
           </div>
         </div>
       </div>

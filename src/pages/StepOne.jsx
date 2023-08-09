@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import Indicator from "../components/ui/Indicator";
-import AppButton from "../components/ui/AppButton";
-import { AppInput } from "../components/ui/AppInput";
+import Indicator from "../components/ui/Indicator"; // Подключите компонент Indicator
+import { AppInput } from "../components/ui/AppInput"; // Подключите компонент AppInput
+import { LinkButton } from "../components/ui/LinkButton"; // Подключите компонент LinkButton
 import { Heading } from "../typography/Heading";
+import { useCurrentProgress } from "../hooks/useCurrentProgress";
 
-const StepOne = ({ onStepChange }) => {
+const StepOne = () => {
   const [answer, setAnswer] = useState("");
 
   const isButtonDisabled = !answer;
@@ -29,17 +30,15 @@ const StepOne = ({ onStepChange }) => {
               value={answer}
               onInput={handleAnswerInput}
             />
-            <AppButton
-              isDisabled={isButtonDisabled}
-              id="next-btn"
-              buttonLabel="Далее"
-              onClick={() => onStepChange(2)}
-            />
+            {
+              isButtonDisabled ?
+              (<LinkButton linkPath='step-two' isDisabled={isButtonDisabled} />) :
+              (<LinkButton linkPath="/step-two" />)
+            }
           </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default StepOne;

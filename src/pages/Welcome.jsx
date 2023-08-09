@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Heading } from "../typography/Heading";
 import { AppInput } from "../components/ui/AppInput";
-import AppButton from "../components/ui/AppButton";
+import { LinkButton } from "../components/ui/LinkButton";
 
-const Welcome = ({ onStepChange }) => {
+const Welcome = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
@@ -45,11 +45,12 @@ const Welcome = ({ onStepChange }) => {
               value={number}
               onInput={handleNumberInput}
             />
-            <AppButton
-              isDisabled={isButtonDisabled}
-              buttonLabel="Далее"
-              onClick={() => onStepChange(1)}
-            />
+            {
+              isButtonDisabled ?
+              (<LinkButton linkPath='step-one' isDisabled={isButtonDisabled} />) :
+              (<LinkButton linkPath="step-one" />)
+            }
+            
           </div>
         </div>
       </div>
