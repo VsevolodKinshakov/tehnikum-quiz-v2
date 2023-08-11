@@ -1,11 +1,6 @@
 import React from "react";
 
-const Indicator = ({ currentStep }) => {
-  const maxSteps = 4;
-
-  if (currentStep === 5) {
-    return null
-  }
+const Indicator = ({ progress }) => {
 
   return (
     <div className="indicator">
@@ -14,15 +9,16 @@ const Indicator = ({ currentStep }) => {
         <span className="indicator__value">15%</span>
       </div>
       <div className="indicator__progressbar">
-        {Array.from({ length: maxSteps }).map((_, index) => (
+        {Array.from({ length: 4 }).map((_, idx) => (
           <div
-            key={index}
-            className={`indicator__unit ${currentStep >= index + 1 ? "_active" : ""}`}
+            key={`indicator-unit-${idx}`}
+            className={`indicator__unit ${idx < progress && "_active" }`}
           ></div>
-        ))}
+        ))
+        }
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Indicator;
+export default Indicator

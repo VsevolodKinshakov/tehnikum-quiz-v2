@@ -1,44 +1,41 @@
-import React, { useState } from "react";
-import Indicator from "../components/ui/Indicator"; // Подключите компонент Indicator
-import { AppInput } from "../components/ui/AppInput"; // Подключите компонент AppInput
-import { LinkButton } from "../components/ui/LinkButton"; // Подключите компонент LinkButton
-import { Heading } from "../typography/Heading";
-import { useCurrentProgress } from "../hooks/useCurrentProgress";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Indicator from "../components/ui/Indicator";
+import AppInput from "../components/ui/AppInput";
+import AppButton from "../components/ui/AppButton";
+import Heading from "../typography/Heading";
+import useCurrentProgress from "../hooks/useCurrentProgress";
+
 
 const StepOne = () => {
-  const [answer, setAnswer] = useState("");
-
-  const isButtonDisabled = !answer;
-
-  const handleAnswerInput = (e) => {
-    setAnswer(e.target.value);
-  };
+  const currentProgress = useCurrentProgress()
+  const navigate = useNavigate()
 
   return (
     <div className="container">
       <div className="wrapper">
         <div className="single-input-quiz">
-          <Indicator />
+          <Indicator progress={currentProgress} />
           <div className="question">
-            <Heading headingtype="h2" text="КАК ОНО РАБОТАЕТ?"/>
-            <AppInput
-              required
-              type="text"
-              name="answer"
+            <Heading headingType="h2" text="1. Занимательный вопрос" />
+            <AppInput 
+              id="question-one" 
+              required={true} 
+              type="text" 
+              name="answer" 
               placeholder="Ваш ответ"
-              errText="Введите ответ"
-              value={answer}
-              onInput={handleAnswerInput}
+              errText="Введите номер в правильном формате"
             />
-            {
-              isButtonDisabled ?
-              (<LinkButton linkPath='step-two' isDisabled={isButtonDisabled} />) :
-              (<LinkButton linkPath="/step-two" />)
-            }
+            <AppButton 
+              isDisabled={false} 
+              buttonLabel="Далее" 
+              onClick={() => navigate('/step-two')} 
+            />
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
+
 export default StepOne;

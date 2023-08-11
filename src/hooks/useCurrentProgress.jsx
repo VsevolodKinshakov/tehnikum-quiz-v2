@@ -1,16 +1,32 @@
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export const useCurrentProgress = () => {
-  const location = useLocation();
-  const pathParts = location.pathname.split("/");
-  const stepIndex = pathParts.findIndex(part => part.includes("step"));
+  const [progress, setProgress] = useState(0)
+  const location = useLocation()
+  useEffect(() => {
 
-  if (stepIndex !== -1) {
-    const stepNumber = parseInt(pathParts[stepIndex + 1]);
-    if (!isNaN(stepNumber)) {
-      return stepNumber;
+
+    switch (location.pathname) {
+      case '/step-one':
+        setProgress(1)
+        break;
+      case '/step-two':
+        setProgress(2)
+        break;
+      case '/step-three':
+        setProgress(3)
+        break;
+      case '/step-four':
+        setProgress(4)
+        break;
+
+      default:
+        setProgress(0)
     }
-  }
-  
-  return 0;
-};
+  }, [location.pathname])
+
+  return progress
+}
+
+export default useCurrentProgress

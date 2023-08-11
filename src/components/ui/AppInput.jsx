@@ -30,3 +30,5 @@ export const AppInput = ({
         </label>
     )
 }
+
+export default AppInput

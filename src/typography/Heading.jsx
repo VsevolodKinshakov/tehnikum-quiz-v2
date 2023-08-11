@@ -25,3 +25,5 @@ export const Heading = ({ text, headingType }) => {
 
     return renderHeading()
 }
+
+export default Heading

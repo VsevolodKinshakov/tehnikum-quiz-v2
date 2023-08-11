@@ -43,6 +43,11 @@ a {
   justify-content: center;
 }
 
+.container.dark {
+  background: #22222a;
+  color: white;
+}
+
 .wrapper {
   width: 338px;
   margin: 0 auto;
@@ -89,7 +94,7 @@ a {
 .input-wrapper._error #error-message {
   display: block;
 }
-
+/* STYLE THIS!!!! */
 input {
   width: 100%;
   padding: 12px 0;
@@ -363,4 +368,16 @@ button:enabled:active {
 }
 .App {
   height: 100vh;
+}
+
+/* Стили для темы Dark */
+.dark {
+  background-color: #22222a;
+  color: white;
+}
+
+/* Стили для темы Light */
+.light {
+  background-color: #f3f3f3;
+  color: #22222a;
 }
