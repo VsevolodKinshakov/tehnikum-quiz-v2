@@ -9,3 +9,5 @@ export const LinkButton = ({ linkPath, isDisabled, onClick }) => {
         </Link>
     )
 }
+
+export default LinkButton

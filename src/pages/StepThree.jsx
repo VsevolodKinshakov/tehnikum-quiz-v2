@@ -1,53 +1,71 @@
 import React, { useState } from "react";
 import Indicator from "../components/ui/Indicator";
-import { LinkButton } from "../components/ui/LinkButton";
-import { Heading } from "../typography/Heading";
+import AppButton from "../components/ui/AppButton";
+import Heading from "../typography/Heading";
+import useCurrentProgress from "../hooks/useCurrentProgress";
+import { useNavigate } from "react-router-dom";
+import AnswerOption from "../components/ui/AnswerOption";
+
 
 const StepThree = () => {
-  const [selectedVariant, setSelectedVariant] = useState(null);
-  const variants = [
-    { id: "variant-1", text: "Улыбашечка", imgSrc: "./img/laugh.png" },
-    { id: "variant-2", text: "СЭРДЦЭ", imgSrc: "./img/hearts.png" },
-    { id: "variant-3", text: "Хитрая морда", imgSrc: "./img/smirk.png" },
-    { id: "variant-4", text: "Удивление", imgSrc: "./img/fright.png" },
-  ];
 
-  const handleVariantChange = (e) => {
-    setSelectedVariant(e.target.id);
-  };
+  const [checkedAnswer, setCheckedAnswer] = useState(null)
+  const currentProgress = useCurrentProgress()
+  const navigate = useNavigate()
 
-  const isButtonDisabled = !selectedVariant;
+  const handleCheck = (answerId) => {
+    setCheckedAnswer(answerId)
+  }
+
+  const options = [
+    {
+      id: 'answer-option-1',
+      text: 'Ваш ответ 1',
+      imgSrc: "./img/laugh.png"
+    },
+    {
+      id: 'answer-option-2',
+      text: 'Ваш ответ 2',
+      imgSrc: "./img/hearts.png"
+    },
+    {
+      id: 'answer-option-3',
+      text: 'Ваш ответ 3',
+      imgSrc: "./img/fright.png"
+    },
+    {
+      id: 'answer-option-4',
+      text: 'Ваш ответ 4',
+      imgSrc: "./img/smirk.png"
+    }
+  ]
 
   return (
     <div className="container">
-      <div className="wrapper">
-        <div className="emoji-quiz">
-          <Indicator />
-          <div className="question">
-            <Heading headingType="h2" text="Супер интересный вопрос" />
-            <ul className="emoji-variants">
-              {variants.map((variant) => (
-                <li className="variant-wrapper" key={variant.id}>
-                  <input
-                    required
-                    type="radio"
-                    name="variant"
-                    id={variant.id}
-                    checked={selectedVariant === variant.id}
-                    onChange={handleVariantChange}
-                  />
-                  <label htmlFor={variant.id}>
-                    <img src={variant.imgSrc} alt={variant.text} />
-                    <p>{variant.text}</p>
-                  </label>
-                </li>
-              ))}
-            </ul>
+    <div className="wrapper">
+      <div className="variants-quiz">
+        <Indicator progress={currentProgress} />
+        <div className="question">
+          <Heading headingType="h2" text="1. Занимательный вопрос" />
+          <ul className="emoji-variants">
             {
-              isButtonDisabled ?
-              (<LinkButton linkPath='step-four' isDisabled={isButtonDisabled} />) :
-              (<LinkButton linkPath="/step-four" />)
+              options.map(element => (
+                <AnswerOption 
+                  key={element.id} 
+                  id={element.id} 
+                  labelText={element.text}
+                  imgSrc={element.imgSrc}
+                  checked={checkedAnswer === element.id}
+                  onChange={() => handleCheck(element.id)}
+                />
+              ))
             }
+          </ul>
+            <AppButton 
+            isDisabled={!checkedAnswer} 
+            buttonLabel="Далее" 
+            onClick={() => navigate('/step-four')}
+          />
           </div>
         </div>
       </div>

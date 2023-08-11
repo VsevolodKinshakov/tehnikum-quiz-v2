@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Heading } from "../typography/Heading";
 import { AppInput } from "../components/ui/AppInput";
 import { LinkButton } from "../components/ui/LinkButton";
+import useTheme from "../hooks/useTheme";
+
 
 const Welcome = () => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const { theme, toggleTheme } = useTheme();
+
+  const [name, setName] = useState(null);
+  const [number, setNumber] = useState(null);
 
   const isButtonDisabled = !name || !number;
 
@@ -18,7 +22,7 @@ const Welcome = () => {
   };
 
   return (
-    <div className="container">
+    <div className={`container ${theme === 'dark' ? 'dark' : 'light'}`}>
       <div className="wrapper">
         <div className="welcome">
           <Heading headingType="h1" text="Добро пожаловать в квиз от лучшего учебного центра" />
@@ -45,17 +49,18 @@ const Welcome = () => {
               value={number}
               onInput={handleNumberInput}
             />
+            <button onClick={toggleTheme}>Переключить тему</button>
             {
               isButtonDisabled ?
-              (<LinkButton linkPath='step-one' isDisabled={isButtonDisabled} />) :
-              (<LinkButton linkPath="step-one" />)
+                (<LinkButton linkPath="step-one" isDisabled={isButtonDisabled} />) :
+                (<LinkButton linkPath="/step-one" />)
             }
-            
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default Welcome;

@@ -1,4 +1,5 @@
-const AppButton = ({ buttonLabel = '', isDisabled, type, id, ...props }) => {
+const AppButton = ({ buttonLabel, isDisabled, type, ...props }
+  ) => {
   return (
     <button 
       disabled={isDisabled}
@@ -11,4 +12,4 @@ const AppButton = ({ buttonLabel = '', isDisabled, type, id, ...props }) => {
   )
 }
 
-export default AppButton;
+export default AppButton

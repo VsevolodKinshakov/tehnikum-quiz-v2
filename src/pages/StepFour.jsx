@@ -1,54 +1,72 @@
 import React, { useState } from "react";
 import Indicator from "../components/ui/Indicator";
-import { Heading } from "../typography/Heading";
-import { LinkButton } from "../components/ui/LinkButton";
-import QuestionVariant from "../components/ui/QuestionVariant";
+import Heading from "../typography/Heading";
+import AnswerOption from "../components/ui/AnswerOption";
+import useCurrentProgress from "../hooks/useCurrentProgress";
+import { useNavigate } from "react-router-dom";
+import AppButton from "../components/ui/AppButton";
+
+
 
 const StepFour = () => {
-  const [selectedVariant, setSelectedVariant] = useState(null);
-  const variants = [
-    { id: "variant-1", text: "Это Жассур.aka" },
-    { id: "variant-2", text: "Это синхофазотрон" },
-    { id: "variant-3", text: "Это язык программирования" },
-    { id: "variant-4", text: "????" },
-    { id: "variant-5", text: "Шо за шлпяпа" },
-    { id: "variant-5", text: "Смотри-ка работает 6 вариант" },
+  const [checkedAnswer, setCheckedAnswer] = useState(null)
+  const currentProgress = useCurrentProgress()
+  const navigate = useNavigate()
 
-  ];
+  const handleCheck = (answerId) => {
+    setCheckedAnswer(answerId)
+  }
 
-  const handleVariantChange = (e) => {
-    setSelectedVariant(e.target.id);
-  };
+  const options = [
+    {
+      id: 'answer-option-1',
+      text: 'Ваш ответ 1'
+    },
+    {
+      id: 'answer-option-2',
+      text: 'Ваш ответ 2'
+    },
+    {
+      id: 'answer-option-3',
+      text: 'Ваш ответ 3'
+    },
+    {
+      id: 'answer-option-4',
+      text: 'Ваш ответ 4'
+    }
+  ]
 
-  const isButtonDisabled = !selectedVariant;
   return (
     <div className="container">
-      <div className="wrapper">
-        <div className="emoji-quiz">
-          <Indicator />
-          <div className="question">
-            <Heading headingType="h2" text="Ты почти подписал ИПОТЕКУ"/>
-            <ul className="variants">
-              {variants.map((variant) => (
-                <QuestionVariant
-                  key={variant.id}
-                  variantId={variant.id}
-                  labelText={variant.text}
-                  onChange={handleVariantChange}
-                  checked={selectedVariant === variant.id}
-                />
-              ))}
-            </ul>
+    <div className="wrapper">
+      <div className="variants-quiz">
+        <Indicator progress={currentProgress} />
+        <div className="question">
+          <Heading headingType="h2" text="1. Занимательный вопрос" />
+          <ul className="variants">
             {
-              isButtonDisabled ?
-              (<LinkButton linkPath='step-five' isDisabled={isButtonDisabled} />) :
-              (<LinkButton linkPath="/step-five" />)
+              options.map(element => (
+                <AnswerOption
+                  key={element.id} 
+                  id={element.id} 
+                  labelText={element.text}
+                  checked={checkedAnswer === element.id}
+                  onChange={() => handleCheck(element.id)}
+                />
+              ))
             }
-          </div>
+          </ul>
+          <AppButton 
+            isDisabled={!checkedAnswer} 
+            buttonLabel="Далее" 
+            onClick={() => navigate('/thanks')}
+          />
         </div>
       </div>
     </div>
+  </div>
   )
 }
+
 
 export default StepFour;

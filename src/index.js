@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './styles/main.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Welcome from './pages/Welcome';
@@ -12,8 +11,10 @@ import StepTwo from './pages/StepTwo';
 import StepThree from './pages/StepThree';
 import StepFour from './pages/StepFour';
 import Thanks from './pages/Thanks';
+import ThemeContext from './providers/themeContext';
 
-const router = createBrowserRouter ([
+
+const router = createBrowserRouter([
   {
     path: '/',
     element: <Welcome />
@@ -35,16 +36,27 @@ const router = createBrowserRouter ([
     element: <StepFour />
   },
   {
-    path: 'step-five',
+    path: 'thanks',
     element: <Thanks />
   },
 ]
 )
 
+const dark = {
+  // Свойства для темы dark
+};
+
+const light = {
+  // Свойства для темы light
+};
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeContext.Provider value={{ dark, light }}>
+      <RouterProvider router={router} />
+    </ThemeContext.Provider>
   </React.StrictMode>
 );
 
